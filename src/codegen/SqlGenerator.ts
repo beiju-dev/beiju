@@ -1,20 +1,17 @@
-import type { AggregateExpr, WindowFunctionExpr } from '../domain/model/AggregateExpr.js'
+import type { AggregateExpr } from '../domain/model/AggregateExpr.js'
+import type { WindowFunctionExpr } from '../domain/model/WindowFunctionExpr.js'
 import type { ColumnRef } from '../domain/model/ColumnRef.js'
-import type { FrameBoundary, FrameSpec, OrderByItem, WindowSpec } from '../domain/model/WindowSpec.js'
-import type {
-  SelectQuery,
-  SelectionItem,
-  WhereClause,
-  WhereCondition,
-} from '../domain/ports/SelectQuery.js'
-
-export interface SqlCompileResult {
-  readonly sql: string
-  readonly params: unknown[]
-}
+import type { WindowSpec } from '../domain/model/WindowSpec.js'
+import type { OrderByItem} from '../domain/model/OrderByItem.js'
+import type { FrameBoundary, FrameSpec } from '../domain/model/FrameSpec.js'
+import type { SelectQuery } from '../domain/model/clause/SelectQuery.js'
+import { SelectionItem } from '../domain/interfaces/ISelectionItem.js'
+import type { WhereClause } from '../domain/model/clause/WhereClause.js'
+import { WhereCondition } from '../domain/model/clause/WhereCondition.js'
+import { ISqlCompileResult } from '../domain/interfaces/ISqlCompileResult.js'
 
 export class SqlGenerator {
-  static compile(query: SelectQuery): SqlCompileResult {
+   public static compile(query: SelectQuery): ISqlCompileResult {
     const params: unknown[] = []
 
     const selectSql = query.select.map((item) => SqlGenerator.compileSelection(item)).join(', ')

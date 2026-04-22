@@ -1,18 +1,17 @@
-import type { QueryNode } from './QueryNode.js'
-
 export type SqlType = 'number' | 'string' | 'date' | 'boolean'
 
-export interface ColumnRef<T extends SqlType = SqlType> extends QueryNode {
-  readonly kind: 'ColumnRef'
-  readonly table?: string
-  readonly column: string
-  readonly type: T
-}
+export class ColumnRef<T extends SqlType = SqlType> {
+  readonly kind = 'ColumnRef' as const
+  
+  constructor(
+    readonly column: string,
+    readonly type: T,
+    readonly table?: string
+  ){}
 
-export function columnRef<T extends SqlType>(
-  column: string,
-  type: T,
-  table?: string
-): ColumnRef<T> {
-  return { kind: 'ColumnRef', column, type, table }
+  
+  public toSql(): string {
+    return this.table ? `${this.table}.${this.column}` : this.column
+  }
+
 }
