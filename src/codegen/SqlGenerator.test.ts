@@ -1,15 +1,29 @@
 import { describe, expect, it } from 'vitest'
 
-import { columnRef } from '../domain/model/ColumnRef.js'
+import { ColumnRef, ColumnRef as columnRef } from '../domain/model/ColumnRef.js'
 import { SqlGenerator } from './SqlGenerator.js'
+
+
+export function columRefParamns(column: string, type: any, table?: string ): ColumnRef{
+
+  return new ColumnRef(column, type, table);
+}
+
+/*readonly from: { table: string; alias?: string },
+    readonly select: SelectionItem[],
+    readonly where?: WhereClause,
+    readonly groupBy?: ColumnRef[],
+    readonly orderBy?: OrderByItem[],
+    readonly limit?: number,
+    readonly offset?: number,*/
 
 describe('SqlGenerator', () => {
   it('gera SELECT simples com WHERE', () => {
     const query = {
       from: { table: 'orders', alias: 'o' },
-      select: [columnRef('seller_name', 'string', 'o')],
+      select: [new columnRef('seller_name', 'string', 'o')],
       where: {
-        conditions: [{ column: columnRef('month', 'string', 'o'), op: '=', value: '2026-01' }],
+        conditions: [{ column: new columnRef('month', 'string', 'o'), op: '=' as const, value: '2026-01' }],
         operator: 'AND' as const,
       },
     }
@@ -24,17 +38,17 @@ describe('SqlGenerator', () => {
 
   it('gera SELECT com GROUP BY e agregação', () => {
     const query = {
-      from: { table: 'orders' },
+      from: { table: 'orders'},
       select: [
-        columnRef('seller_name', 'string'),
+        new columnRef('seller_name', 'string'),
         {
           kind: 'AggregateExpr' as const,
           fn: 'SUM' as const,
-          column: columnRef('total_amount', 'number'),
+          column: new columnRef('total_amount', 'number'),
           alias: 'total_sales',
         },
       ],
-      groupBy: [columnRef('seller_name', 'string')],
+      groupBy: [new columnRef('seller_name', 'string')],
     }
 
     const compiled = SqlGenerator.compile(query)
@@ -47,7 +61,7 @@ describe('SqlGenerator', () => {
 
   it('gera SELECT com Window Function RANK e LAG', () => {
     const query = {
-      from: { table: 'orders', alias: 'o' },
+      from: { table: 'orders', alias: 'o'},
       select: [
         {
           kind: 'WindowFunctionExpr' as const,
@@ -57,7 +71,7 @@ describe('SqlGenerator', () => {
             orderBy: [
               {
                 kind: 'OrderByItem' as const,
-                column: columnRef('total_amount', 'number', 'o'),
+                column: new columnRef('total_amount', 'number', 'o'),
                 direction: 'DESC' as const,
               },
             ],
@@ -67,14 +81,14 @@ describe('SqlGenerator', () => {
         {
           kind: 'WindowFunctionExpr' as const,
           fn: 'LAG' as const,
-          column: columnRef('total_amount', 'number', 'o'),
+          column: new columnRef('total_amount', 'number', 'o'),
           offset: 1,
           window: {
             kind: 'WindowSpec' as const,
             orderBy: [
               {
                 kind: 'OrderByItem' as const,
-                column: columnRef('month', 'string', 'o'),
+                column: new columnRef('month', 'string', 'o'),
                 direction: 'ASC' as const,
               },
             ],
@@ -101,11 +115,11 @@ describe('SqlGenerator', () => {
           fn: 'ROW_NUMBER' as const,
           window: {
             kind: 'WindowSpec' as const,
-            partitionBy: [columnRef('seller_name', 'string', 'o')],
+            partitionBy: [new columnRef('seller_name', 'string', 'o')],
             orderBy: [
               {
                 kind: 'OrderByItem' as const,
-                column: columnRef('total_amount', 'number', 'o'),
+                column: new columnRef('total_amount', 'number', 'o'),
                 direction: 'DESC' as const,
               },
             ],

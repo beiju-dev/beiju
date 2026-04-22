@@ -8,6 +8,6 @@ export type QueryNodeKind =
   | 'OrderByItem'
   | 'FrameSpec'
 
-export interface QueryNode {
+export interface IQueryNode {
   readonly kind: QueryNodeKind
 }
