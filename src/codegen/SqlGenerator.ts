@@ -1,5 +1,5 @@
-import type { AggregateExpr } from '../domain/model/AggregateExpr.js'
-import type { WindowFunctionExpr } from '../domain/model/WindowFunctionExpr.js'
+import type { AggregateExpr } from '../domain/model/expr/AggregateExpr.js'
+import type { WindowFunctionExpr } from '../domain/model/expr/WindowFunctionExpr.js'
 import type { ColumnRef } from '../domain/model/ColumnRef.js'
 import type { WindowSpec } from '../domain/model/WindowSpec.js'
 import type { OrderByItem} from '../domain/model/OrderByItem.js'
