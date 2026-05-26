@@ -1,5 +1,5 @@
 import { ColumnRef } from "../ColumnRef.js";
-import { WhereOp } from "./WhereClause.js";
+export type WhereOp = '=' | '!=' | '<>' | '>' | '<' | '>=' | '<=' | 'BETWEEN' | 'IN' 
 
 export class WhereCondition {
   constructor(

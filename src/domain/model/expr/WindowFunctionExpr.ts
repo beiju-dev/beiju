@@ -1,5 +1,5 @@
-import { ColumnRef, SqlType } from './ColumnRef.js'
-import { WindowSpec } from './WindowSpec.js'
+import { ColumnRef, SqlType } from '../ColumnRef.js'
+import { WindowSpec } from '../WindowSpec.js'
 
 export type WindowFn = 'ROW_NUMBER' | 'RANK' | 'DENSE_RANK' | 'LAG' | 'LEAD' | 'NTILE'
 

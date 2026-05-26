@@ -1,21 +1,12 @@
 import { describe, expect, it } from 'vitest'
 
-import { ColumnRef, ColumnRef as columnRef } from '../domain/model/ColumnRef.js'
-import { SqlGenerator } from './SqlGenerator.js'
-
+import { ColumnRef, ColumnRef as columnRef } from '../../domain/model/ColumnRef.js'
+import { SqlGenerator } from '../../codegen/SqlGenerator.js'
 
 export function columRefParamns(column: string, type: any, table?: string ): ColumnRef{
 
   return new ColumnRef(column, type, table);
 }
-
-/*readonly from: { table: string; alias?: string },
-    readonly select: SelectionItem[],
-    readonly where?: WhereClause,
-    readonly groupBy?: ColumnRef[],
-    readonly orderBy?: OrderByItem[],
-    readonly limit?: number,
-    readonly offset?: number,*/
 
 describe('SqlGenerator', () => {
   it('gera SELECT simples com WHERE', () => {

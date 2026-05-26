@@ -1,6 +1,6 @@
 // domain/model/AggregateExpr.ts
-import { ColumnRef, SqlType } from './ColumnRef.js'
-import { WindowSpec } from './WindowSpec.js'
+import { ColumnRef, SqlType } from '../ColumnRef.js'
+import { WindowSpec } from '../WindowSpec.js'
 
 export type AggFn = 'SUM' | 'AVG' | 'COUNT' | 'MIN' | 'MAX'
 
