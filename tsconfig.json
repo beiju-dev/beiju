@@ -5,13 +5,9 @@
     "moduleResolution": "NodeNext",
     "strict": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "outDir": "./dist",
-    "types": ["vitest/globals"],
-    "rootDir": "./src",
+    "types": ["vitest/globals"]
   },
   "include": ["src/**/*.ts"]
 }
