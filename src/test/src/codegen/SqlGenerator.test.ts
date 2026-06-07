@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
-import { ColumnRef, ColumnRef as columnRef } from '../../domain/model/ColumnRef.js'
-import { SqlGenerator } from '../../codegen/SqlGenerator.js'
+import { ColumnRef, ColumnRef as columnRef } from '@core/ColumnRef.js';
+import { SqlGenerator } from '@codegen/SqlGenerator.js'; 
 
 export function columRefParamns(column: string, type: any, table?: string ): ColumnRef{
 

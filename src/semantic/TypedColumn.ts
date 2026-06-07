@@ -1,8 +1,8 @@
-import { ColumnRef } from '../domain/model/ColumnRef.js'
-import { SqlType } from '../domain/types/SqlType.js'
-import { AggExprBuilder } from '../application/builders/AggExprBuilder.js'
-import { WindowFnExprBuilder } from '../application/builders/WindowFnExprBuilder.js'
-import { WhereCondition } from '../domain/model/clause/WhereCondition.js'
+import { ColumnRef } from '../core/ColumnRef.js' 
+import { SqlType } from '../core/types/SqlType.js'
+import { AggExprBuilder } from '@builders/relational/AggExprBuilder.js' 
+import { WindowFnExprBuilder } from '@builders/relational/WindowFnExprBuilder.js'
+import { WhereCondition } from '../core/ast/clause/WhereCondition.js' 
 
 /**
  * Representa uma coluna como cidadão de primeira classe na DSL.

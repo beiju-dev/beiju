@@ -1,6 +1,6 @@
 import { PgAdapter } from '../infrastructure/adapters/PgAdapter.js'
 //import { CsvAdapter } from '../infrastructure/adapters/CsvAdapter.js'
-import type { IDataSourceAdapter } from '../domain/interfaces/IDataSourceAdapter.js'
+import type { IDataSourceAdapter } from '../core/interfaces/IDataSourceAdapter.js' 
 import { Table } from './Table.js' 
 /**
  * Ponto de entrada do Beiju.

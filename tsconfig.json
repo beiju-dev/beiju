@@ -12,6 +12,13 @@
     "outDir": "./dist",
     "types": ["vitest/globals"],
     "rootDir": "./src",
+    "paths": {
+      "@core/*":           ["./src/core/*"],
+      "@builders/*":       ["./src/builders/*"],
+      "@codegen/*":        ["./src/codegen/*"],
+      "@semantic/*":       ["./src/semantic/*"],
+      "@infrastructure/*": ["./src/infrastructure/*"]
+    }
   },
   "include": ["src/**/*.ts"]
 }

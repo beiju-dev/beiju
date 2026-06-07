@@ -1,9 +1,6 @@
-import { SemanticSelectBuilder } from './builder/SemanticSelectBuilder.js' 
-import type { IDataSourceAdapter, TableSchema } from '../domain/interfaces/IDataSourceAdapter.js'
+import { SemanticSelectBuilder } from '../builders/semantic/SemanticSelectBuilder.js' 
+import type { IDataSourceAdapter, TableSchema } from '../core/interfaces/IDataSourceAdapter.js' 
 import { TypedColumn } from './TypedColumn.js'
-import { type SemanticSelectionItem } from './builder/SemanticSelectBuilder.js'
-
-import { ColumnRef } from '../domain/model/ColumnRef.js'
 
 /**
  * Representa uma tabela/arquivo com schema conhecido.
