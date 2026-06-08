@@ -1,38 +1,26 @@
 # File Tree: beiju.js
 
-**Generated:** 06/06/2026, 15:36:31
-**Root Path:** `/Users/juniorteixeira/Documents/Eu/Projetos/beiju.js`
+**Generated:** 07/06/2026, 01:40:59
+**Root Path:** `<repo-root>`
 
 ```
 ├── .github
 │   ├── workflows
 │   └── pull_request_template.md
 ├── src
-│   ├── application
-│   │   ├── builders
+│   ├── builders
+│   │   ├── relational
 │   │   │   ├── AggExprBuilder.ts
 │   │   │   ├── SelectBuilder.ts
 │   │   │   ├── WhereBuilder.ts
 │   │   │   ├── WindowBuilder.ts
 │   │   │   └── WindowFnExprBuilder.ts
-│   │   ├── ColumnContext.ts
-│   │   ├── WhereColumnRef.ts
-│   │   └── WhereContext.ts
+│   │   └── semantic
+│   │       └── SemanticSelectBuilder.ts
 │   ├── codegen
 │   │   └── SqlGenerator.ts
-│   ├── domain
-│   │   ├── interfaces
-│   │   │   ├── builder
-│   │   │   │   ├── IBuilder.ts
-│   │   │   │   ├── ISelectBuilder.ts
-│   │   │   │   ├── IWhereBuilder.ts
-│   │   │   │   └── IWindowBuilder.ts
-│   │   │   ├── IDataSourceAdapter.ts
-│   │   │   ├── IQueryExecutor.ts
-│   │   │   ├── IQueryNode.ts
-│   │   │   ├── ISqlCompileResult.ts
-│   │   │   └── ISqlDialect.ts
-│   │   ├── model
+│   ├── core
+│   │   ├── ast
 │   │   │   ├── clause
 │   │   │   │   ├── SelectQuery.ts
 │   │   │   │   ├── WhereClause.ts
@@ -40,47 +28,58 @@
 │   │   │   ├── expr
 │   │   │   │   ├── AggregateExpr.ts
 │   │   │   │   └── WindowFunctionExpr.ts
-│   │   │   ├── ColumnRef.ts
 │   │   │   ├── FrameSpec.ts
 │   │   │   ├── OrderByItem.ts
 │   │   │   └── WindowSpec.ts
-│   │   ├── ports
+│   │   ├── interfaces
+│   │   │   ├── IBuilder.ts
+│   │   │   ├── IDataSourceAdapter.ts
+│   │   │   ├── IQueryExecutor.ts
+│   │   │   ├── IQueryNode.ts
+│   │   │   ├── ISelectBuilder.ts
+│   │   │   ├── ISqlCompileResult.ts
+│   │   │   ├── ISqlDialect.ts
+│   │   │   ├── IWhereBuilder.ts
+│   │   │   ├── IWindowBuilder.ts
 │   │   │   └── QueryExecutor.ts
-│   │   └── types
-│   │       ├── AggFnType.ts
-│   │       ├── QueryNodeKindType.ts
-│   │       ├── SelectionItemType.ts
-│   │       ├── SqlType.ts
-│   │       ├── WhereOpType.ts
-│   │       └── WindowFnType.ts
+│   │   ├── types
+│   │   │   ├── AggFnType.ts
+│   │   │   ├── QueryNodeKindType.ts
+│   │   │   ├── SelectionItemType.ts
+│   │   │   ├── SqlType.ts
+│   │   │   ├── WhereOpType.ts
+│   │   │   └── WindowFnType.ts
+│   │   └── ColumnRef.ts
 │   ├── infrastructure
 │   │   └── adapters
 │   │       ├── CsvAdapter.ts
 │   │       └── PgAdapter.ts
 │   ├── semantic
-│   │   ├── builder
-│   │   │   └── SemanticSelectBuilder.ts
 │   │   ├── AnalyticsContext.ts
+│   │   ├── ColumnContext.ts
 │   │   ├── Table.ts
-│   │   └── TypedColumn.ts
+│   │   ├── TypedColumn.ts
+│   │   ├── WhereColumnRef.ts
+│   │   └── WhereContext.ts
 │   ├── test
 │   │   ├── integration
 │   │   └── src
-│   │       ├── application
+│   │       ├── builders
+│   │       │   └── semantic
+│   │       │       └── SemanticSelectBuilder.test.ts
 │   │       ├── codegen
 │   │       │   └── SqlGenerator.test.ts
-│   │       ├── infrastructure
-│   │       │   └── adapters
-│   │       │       └── PgAdapter.test.ts
-│   │       └── semantic
-│   │           └── SemanticSelectBuilder.test.ts
+│   │       └── infrastructure
+│   │           └── adapters
+│   │               └── PgAdapter.test.ts
 │   └── index.ts
 ├── # File Tree: beiju.md
 ├── .gitignore
 ├── README.md
 ├── package-lock.json
 ├── package.json
-└── tsconfig.json
+├── tsconfig.json
+└── vitest.config.ts
 ```
 
 ---

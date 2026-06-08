@@ -1,7 +1,7 @@
 import { Pool, type PoolConfig } from 'pg'
-import type { IDataSourceAdapter } from '../../domain/interfaces/IDataSourceAdapter.js'
-import type { TableSchema, ColumnSchema } from '../../domain/interfaces/IDataSourceAdapter.js'
-import type { QueryResult } from '../../domain/ports/QueryExecutor.js'
+import type { IDataSourceAdapter } from '../../core/interfaces/IDataSourceAdapter.js' 
+import type { TableSchema, ColumnSchema } from '../../core/interfaces/IDataSourceAdapter.js' 
+import type { QueryResult } from '../../core/interfaces/QueryExecutor.js'
 import { QueryResultRow } from 'pg'
 
 const PG_TYPE_MAP: Record<string, ColumnSchema['type']> = {
