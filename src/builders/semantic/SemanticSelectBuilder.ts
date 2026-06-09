@@ -11,7 +11,9 @@ import { WindowFnExprBuilder } from '@builders/relational/WindowFnExprBuilder.js
 import { TypedColumn } from '../../semantic/TypedColumn.js' 
 import { AliasedColumn } from '../../semantic/TypedColumn.js'
 import { Table } from '../../semantic/Table.js' 
-
+import { JoinSpec } from '@core/ast/JoinSpec.js'
+import { JoinBuilder } from '@builders/relational/JoinBuilder.js'
+import { ISemanticSelectBuilder } from '@core/interfaces/ISemanticSelectBuilder.js'
 /**
  * Tipos aceitos no .select() do SemanticSelectBuilder.
  * O dev passa colunas, agregações ou window functions — sem strings.
@@ -54,12 +56,14 @@ export type WhereInput =
  *     .limit(10)
  *     .fetch()
  */
-export class SemanticSelectBuilder {
+export class SemanticSelectBuilder implements ISemanticSelectBuilder {
   private whereInput?: WhereInput
   private groupByColumns: ColumnRef[] = []
   private orderByItems: OrderByItem[] = []
   private limitValue?: number
   private offsetValue?: number
+  private joinSpecs: JoinSpec[] = []
+
 
   constructor(
     private readonly table: Table,
@@ -94,12 +98,28 @@ export class SemanticSelectBuilder {
     return this
   }
 
-  // --- Compilação ---
+  private addJoin(spec: JoinSpec): this {
+  this.joinSpecs.push(spec)
+  return this
+  }
 
-  /**
-   * Resolve os itens do select para os tipos da AST.
-   * AggExprBuilder e WindowFnExprBuilder são "buildados" aqui.
-   */
+  join(table: Table): JoinBuilder<this> {
+  return new JoinBuilder(table, (spec) => this.addJoin(spec), 'JOIN')
+  }
+
+  innerJoin(table: Table): JoinBuilder<this> {
+  return new JoinBuilder(table, (spec) => this.addJoin(spec), 'INNER')
+  }
+
+  leftJoin(table: Table): JoinBuilder<this> {
+  return new JoinBuilder(table, (spec) => this.addJoin(spec), 'LEFT')
+  }
+
+  rightJoin(table: Table): JoinBuilder<this> {
+  return new JoinBuilder(table, (spec) => this.addJoin(spec), 'RIGHT')
+  }
+
+
   private resolveSelections(): SelectQuery['select'] {
     return this.selections.map(item => {
       if (item instanceof AggExprBuilder)     return item.build()
@@ -128,14 +148,12 @@ export class SemanticSelectBuilder {
     return new WhereClause([this.whereInput], 'AND')
   }
 
-  /**
-   * Monta o SelectQuery (AST) com todos os dados acumulados.
-   */
   build(): SelectQuery {
     return new SelectQuery(
       { table: this.table.tableName },
       this.resolveSelections(),
       this.resolveWhere(),
+      this.joinSpecs.length > 0 ? this.joinSpecs : undefined,
       this.groupByColumns.length > 0 ? this.groupByColumns : undefined,
       this.orderByItems.length  > 0 ? this.orderByItems  : undefined,
       this.limitValue,
@@ -143,13 +161,11 @@ export class SemanticSelectBuilder {
     )
   }
 
-  /**
-   * Compila para SQL, executa no adapter e retorna os resultados tipados.
-   */
-  async fetch<T extends Record<string, any> = any>(): Promise<T[]> {
+  // Compila para SQL, executa no adapter e retorna os resultados tipados.
+  async fetch<T>(): Promise<T[]> {
     const query = this.build()
     const { sql, params } = SqlGenerator.compile(query)
-    const result = await this.adapter.execute<T>(sql, params)
+    const result = await this.adapter.execute(sql, params)
     return result.rows
   }
 }

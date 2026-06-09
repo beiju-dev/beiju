@@ -93,6 +93,7 @@ export class SelectBuilder implements ISelectBuilder {
       this.fromClause,
       this.selections,
       this.whereClause,
+      undefined,
       this.groupByColumns.length > 0 ? this.groupByColumns : undefined,
       this.orderByItems.length > 0 ? this.orderByItems : undefined,
       this.limitValue,

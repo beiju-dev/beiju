@@ -3,6 +3,7 @@ import { SemanticSelectBuilder } from '@builders/semantic/SemanticSelectBuilder.
 import { Table } from  '../../../../semantic/Table.js'
 import { TypedColumn } from '@semantic/TypedColumn.js' 
 import type { IDataSourceAdapter } from '@core/interfaces/IDataSourceAdapter.js'
+import { createTable } from '../../../../semantic/Table.js'
 
 // Mock do adapter — sem banco real
 const mockAdapter: IDataSourceAdapter = {
@@ -22,9 +23,7 @@ const mockSchema = {
   ],
 }
 
-const table = new Table('orders', mockSchema, mockAdapter,{
-  select: (t, items) => new SemanticSelectBuilder(t, items, t.adapter)
-})
+const table = createTable('orders', mockSchema, mockAdapter)
 
 describe('SemanticSelectBuilder', () => {
 
