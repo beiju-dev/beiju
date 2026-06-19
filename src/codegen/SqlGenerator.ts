@@ -23,7 +23,7 @@ export class SqlGenerator {
       ? `${query.from.table} AS ${query.from.alias}`
       : query.from.table;
 
-    const clauses: string[] = [`SELECT ${selectSql}`, `FROM ${fromSql}`]
+    const clauses: string[] = [`SELECT ${selectSql}`, `FROM ${fromSql}`];
 
     if (query.joins?.length) {
       query.joins.forEach((join) => {
@@ -78,7 +78,18 @@ export class SqlGenerator {
   }
 
   private static compileAggregate(aggregate: AggregateExpr): string {
-    const expr = `${aggregate.fn}(${SqlGenerator.compileColumn(aggregate.column)})`;
+    let innerSql: string;
+
+    if ((aggregate.column as any).kind === "AggregateExpr") {
+      const nested = aggregate.column as unknown as AggregateExpr;
+      const nestedCol = SqlGenerator.compileColumn(nested.column as ColumnRef);
+      innerSql = `${nested.fn}(${nestedCol})`;
+    } else {
+      innerSql = SqlGenerator.compileColumn(aggregate.column as ColumnRef);
+    }
+
+    const expr = `${aggregate.fn}(${innerSql})`;
+
     const withWindow = aggregate.window
       ? `${expr} ${SqlGenerator.compileWindow(aggregate.window)}`
       : expr;
@@ -87,19 +98,23 @@ export class SqlGenerator {
   }
 
   private static compileWindowFn(windowFn: WindowFunctionExpr): string {
-    const args: unknown[] = [];
+    const args: string[] = [];
 
     if (windowFn.column) {
-      args.push(SqlGenerator.compileColumn(windowFn.column));
+      if (windowFn.column.kind === "AggregateExpr") {
+        const agg = windowFn.column as AggregateExpr;
+        args.push(`${agg.fn}(${SqlGenerator.compileColumn(agg.column as ColumnRef)})`);
+      } else {
+        args.push(SqlGenerator.compileColumn(windowFn.column as ColumnRef));
+      }
     }
 
     if (typeof windowFn.offset === "number") {
-      args.push(windowFn.offset);
+      args.push(String(windowFn.offset));
     }
 
     const fnExpr = `${windowFn.fn}(${args.join(", ")})`;
     const withWindow = `${fnExpr} ${SqlGenerator.compileWindow(windowFn.window)}`;
-
     return windowFn.alias ? `${withWindow} AS ${windowFn.alias}` : withWindow;
   }
 
@@ -192,10 +207,17 @@ export class SqlGenerator {
     return `${columnSql} ${condition.op} ${valuePlaceholder}`;
   }
 
-  private static compileOrderByItem(
-    item: { column: ColumnRef; direction: "ASC" | "DESC" } | OrderByItem,
-  ): string {
-    return `${SqlGenerator.compileColumn(item.column)} ${item.direction}`;
+  private static compileOrderByItem(item: OrderByItem): string {
+    let exprSql: string;
+
+    if (item.expr.kind === "AggregateExpr") {
+      const agg = item.expr as AggregateExpr;
+      exprSql = `${agg.fn}(${SqlGenerator.compileColumn(agg.column as ColumnRef)})`;
+    } else {
+      exprSql = SqlGenerator.compileColumn(item.expr as ColumnRef);
+    }
+
+    return `${exprSql} ${item.direction}`;
   }
 
   private static pushParam(params: unknown[], value: unknown): string {
@@ -204,15 +226,18 @@ export class SqlGenerator {
   }
 
   private static compileJoin(join: JoinSpec): string {
-    const tableRef = join.alias 
-    ? `${join.table} AS ${join.alias}` 
-    : join.table;
+    const tableRef = join.alias ? `${join.table} AS ${join.alias}` : join.table;
 
     const conditions = join.conditions
-      .map((c) => `${SqlGenerator.compileColumn(c.left)} ${c.op} ${SqlGenerator.compileColumn(c.right)}`)
+      .map(
+        (c) =>
+          `${SqlGenerator.compileColumn(c.left)} ${c.op} ${SqlGenerator.compileColumn(c.right)}`,
+      )
       .join(" AND ");
 
-    const returnJoin = join.type ? `${join.type} JOIN ${tableRef} ON ${conditions}` : `JOIN ${tableRef} ON ${conditions}`
+    const returnJoin = join.type
+      ? `${join.type} JOIN ${tableRef} ON ${conditions}`
+      : `JOIN ${tableRef} ON ${conditions}`;
 
     return returnJoin;
   }
