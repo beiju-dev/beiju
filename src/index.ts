@@ -6,7 +6,6 @@ import { WindowFnExprBuilder } from './builders/relational/WindowFnExprBuilder.j
 import { ColumnRef } from '@core/ColumnRef.js'; 
 import { AggExprBuilder } from '@builders/relational/AggExprBuilder.js';
 import { TypedColumn } from './semantic/TypedColumn.js';
-import 'dotenv/config'
 
 export const lag = (col: string | AggExprBuilder, offset = 1) => {
     const columnExpr = col instanceof AggExprBuilder
