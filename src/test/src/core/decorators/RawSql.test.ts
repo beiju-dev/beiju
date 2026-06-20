@@ -22,6 +22,13 @@ class UserRepository implements IRawQueryCheck{
 
   @RawSql('SELECT * FROM users WHERE salary > $1 AND active = $2')
   async getBySalaryAndStatus(salary: number, active: boolean): Promise<any[]> { return [] }
+
+  @RawSql('SELECT * FROM users WHERE region = $1 AND active = $2')
+  async getByRegionAndAtive(region: string, active: boolean): Promise<any[]> { 
+    return [] 
+}
+
+
 }
 
 describe('@RawSql decorator', () => {
@@ -99,4 +106,14 @@ describe('@RawSql decorator', () => {
     expect(mockExecutor.execute).not.toHaveBeenCalled()
     expect(mockExecuteRaw).toHaveBeenCalledOnce()
   })
+
+  it('preserva a posição dos parâmetros mesmo com undefined no meio', async () => {
+  await repo.getByRegionAndAtive(undefined, true)
+
+  expect(mockExecuteRaw).toHaveBeenCalledWith(
+    'SELECT * FROM users WHERE region = $1 AND active = $2',
+    [null, true]
+  )
+ })
+
 })

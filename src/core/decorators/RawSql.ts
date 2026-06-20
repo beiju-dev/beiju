@@ -32,8 +32,8 @@ export function RawSql(sql: string) {
           `Verifique se o adapter utilizado implementa IQueryExecutor corretamente.`
         )
       }
-
-      const params = args.filter(arg => arg !== undefined)
+      
+      const params = args.map(arg => arg === undefined ? null : arg)
 
       const result = await executor.executeRaw(sql, params)
       return result.rows
