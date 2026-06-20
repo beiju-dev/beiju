@@ -81,7 +81,7 @@ describe('SqlGenerator', () => {
             orderBy: [
               {
                 kind: 'OrderByItem' as const,
-                expr: new columnRef('total_amount', 'number', 'o'),
+                expr: new columnRef('month', 'number', 'o'),
                 direction: 'ASC' as const,
               },
             ],
@@ -112,7 +112,7 @@ describe('SqlGenerator', () => {
             orderBy: [
               {
                 kind: 'OrderByItem' as const,
-                expr: new columnRef('nome_da_coluna_de_ordenacao', 'number', 'o'), 
+                expr: new columnRef('total_amount', 'number', 'o'), 
                 direction: 'DESC' as const,
               },
             ],
