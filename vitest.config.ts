@@ -2,6 +2,7 @@ import { defineConfig } from 'vitest/config'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { resolve } from 'path'
 
+export default defineConfig({
   cacheDir: "./node_modules/.vitest",
   plugins: [tsconfigPaths()],
   test: {
@@ -9,7 +10,6 @@ import { resolve } from 'path'
     exclude: ["node_modules", "dist"],
     environment: "node",
     isolate: true,
-   
   },
   resolve: {
     alias: {
