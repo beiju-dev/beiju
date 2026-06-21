@@ -54,7 +54,7 @@ export class SqlGenerator {
     if (typeof query.offset === "number") {
       clauses.push(`OFFSET ${query.offset}`);
     }
-
+ 
     return {
       sql: clauses.join(" "),
       params,
@@ -78,35 +78,33 @@ export class SqlGenerator {
   }
 
   private static compileAggregate(aggregate: AggregateExpr): string {
-    let innerSql: string;
-
-    if ((aggregate.column as any).kind === "AggregateExpr") {
-      const nested = aggregate.column as unknown as AggregateExpr;
-      const nestedCol = SqlGenerator.compileColumn(nested.column as ColumnRef);
-      innerSql = `${nested.fn}(${nestedCol})`;
-    } else {
-      innerSql = SqlGenerator.compileColumn(aggregate.column as ColumnRef);
-    }
-
-    const expr = `${aggregate.fn}(${innerSql})`;
+    const expr = `${aggregate.fn}(${SqlGenerator.compileAggColumn(aggregate.column)})`
 
     const withWindow = aggregate.window
-      ? `${expr} ${SqlGenerator.compileWindow(aggregate.window)}`
-      : expr;
+    ? `${expr} ${SqlGenerator.compileWindow(aggregate.window)}`
+    : expr
+    
+    return aggregate.alias ? `${withWindow} AS ${aggregate.alias}` : withWindow
+  }
 
-    return aggregate.alias ? `${withWindow} AS ${aggregate.alias}` : withWindow;
+  //compila agregação e apenas coluna (entende os tipos e desmembra o aninhamento com recursividade)
+  private static compileAggColumn(column: ColumnRef | AggregateExpr): string {
+  if (column.kind === 'AggregateExpr') {
+    const inner = SqlGenerator.compileAggColumn(column.column)
+    return `${column.fn}(${inner})`
+  }
+  return SqlGenerator.compileColumn(column)
   }
 
   private static compileWindowFn(windowFn: WindowFunctionExpr): string {
     const args: string[] = [];
 
     if (windowFn.column) {
-      if (windowFn.column.kind === "AggregateExpr") {
-        const agg = windowFn.column as AggregateExpr;
-        args.push(`${agg.fn}(${SqlGenerator.compileColumn(agg.column as ColumnRef)})`);
-      } else {
-        args.push(SqlGenerator.compileColumn(windowFn.column as ColumnRef));
-      }
+      args.push(SqlGenerator.compileAggColumn(windowFn.column));
+    }
+
+    if (typeof windowFn.offset === "number") {
+      args.push(String(windowFn.offset));
     }
 
     if (typeof windowFn.offset === "number") {
@@ -115,6 +113,7 @@ export class SqlGenerator {
 
     const fnExpr = `${windowFn.fn}(${args.join(", ")})`;
     const withWindow = `${fnExpr} ${SqlGenerator.compileWindow(windowFn.window)}`;
+
     return windowFn.alias ? `${withWindow} AS ${windowFn.alias}` : withWindow;
   }
 
@@ -208,14 +207,7 @@ export class SqlGenerator {
   }
 
   private static compileOrderByItem(item: OrderByItem): string {
-    let exprSql: string;
-
-    if (item.expr.kind === "AggregateExpr") {
-      const agg = item.expr as AggregateExpr;
-      exprSql = `${agg.fn}(${SqlGenerator.compileColumn(agg.column as ColumnRef)})`;
-    } else {
-      exprSql = SqlGenerator.compileColumn(item.expr as ColumnRef);
-    }
+    const exprSql = SqlGenerator.compileAggColumn(item.expr)
 
     return `${exprSql} ${item.direction}`;
   }

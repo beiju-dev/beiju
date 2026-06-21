@@ -94,7 +94,7 @@ describe('SqlGenerator', () => {
     const compiled = SqlGenerator.compile(query)
 
     expect(compiled).toEqual({
-      sql: 'SELECT RANK() OVER (ORDER BY o.total_amount DESC) AS ranking, LAG(o.total_amount, 1) OVER (ORDER BY o.month ASC) AS prev_month FROM orders AS o',
+      sql: 'SELECT RANK() OVER (ORDER BY o.total_amount DESC) AS ranking, LAG(o.total_amount, 1, 1) OVER (ORDER BY o.month ASC) AS prev_month FROM orders AS o',
       params: [],
     })
   })
@@ -129,4 +129,14 @@ describe('SqlGenerator', () => {
       params: [],
     })
   })
+
+  it("compila agregação duplamente aninhada corretamente", () => {
+    const nested = new AggregateExpr(
+      "AVG",
+      new AggregateExpr("SUM", new ColumnRef("total", "number", "vendas")),
+    );
+
+    const sql = (SqlGenerator as any).compileAggregate(nested);
+    expect(sql).toBe("AVG(SUM(vendas.total))");
+  });
 })
