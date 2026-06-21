@@ -87,6 +87,9 @@ export class SemanticSelectBuilder implements ISemanticSelectBuilder {
   return new JoinBuilder(table, (spec) => this.addJoin(spec), 'RIGHT')
   }
 
+  fullOuterJoin(table: Table): JoinBuilder<this> {
+  return new JoinBuilder(table,(spec) => this.addJoin(spec), 'FULL OUTER',)
+  }
 
   private resolveSelections(): SelectQuery['select'] {
     return this.selections.map(item => {
