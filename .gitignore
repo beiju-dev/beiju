@@ -1,5 +1,38 @@
+node_modules/
+
+# Build output
+dist/
+build/
+*.tsbuildinfo
+
+.env
+.env.local
+.env.*.local
+
+.testcontainers.properties
+
+coverage/
+.nyc_output/
+
+# Vitest
+vitest.config.ts.timestamp-*
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# SO
 .DS_Store
-node_modules
-.dist
-dist
-*.env
+Thumbs.db
+
+
+.npm/
+.pnpm-store/
+.yarn/cache/
