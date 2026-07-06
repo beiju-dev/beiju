@@ -1,6 +1,6 @@
 # File Tree: beiju.js
 
-**Generated:** 19/06/2026, 00:33:52
+**Generated:** 03/07/2026, 21:17:32
 **Root Path:** `<repo/private>`
 
 ```
@@ -69,6 +69,13 @@
 │   │   └── WhereContext.ts
 │   ├── test
 │   │   ├── integration
+│   │   │   └── semantic
+│   │   │       ├── FullOuterJoin.test.ts
+│   │   │       ├── PortuguesImplementation.test.ts
+│   │   │       ├── SemanticSelectBuilderIntegration.test.ts
+│   │   │       ├── WhereComposite.test.ts
+│   │   │       ├── WhereHelpers.test.ts
+│   │   │       └── WhereOperators.test.ts
 │   │   └── src
 │   │       ├── builders
 │   │       │   └── semantic
@@ -83,13 +90,17 @@
 │   │           └── adapters
 │   │               └── PgAdapter.test.ts
 │   ├── usecases
+│   │   ├── exemploModoPortugues.ts
 │   │   ├── queryBuilderBenchmarking.ts
 │   │   ├── rawSqlBase.ts
 │   │   └── rawSqlEQueryBuilderBenchmarking.ts
 │   └── index.ts
 ├── # File Tree: beiju.md
 ├── .gitignore
+├── .npmrc
+├── Liscence.md
 ├── README.md
+├── README.pt-br.md
 ├── package-lock.json
 ├── package.json
 ├── tsconfig.json

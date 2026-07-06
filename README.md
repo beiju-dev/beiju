@@ -1,5 +1,11 @@
 # Beiju
+
+  <img width="260" height="238" alt="image" src="https://github.com/user-attachments/assets/8c994bf2-2e6e-4e86-bfac-2458982b1f54" />
+</div>
  
+**Beiju** | [Leia em Português 🇧🇷](./README.pt-br.md)
+
+
 **An analytical query builder for Node.js, with a Semantic Layer and bilingual API (English / Portuguese).**
  
 Beiju compiles fluent TypeScript method chains into safe, parameterized SQL, abstracting OLAP operations (Window Functions, aggregations, JOINs, temporal comparisons) that traditional ORMs like Prisma and TypeORM were never designed to handle.
@@ -139,4 +145,4 @@ MIT. See [LICENSE.md](./LICENSE.md).
  
 ## Acknowledgments
  
-Developed by Gilson Teixeira do Sacramento Junior, advised by Prof. Me. Diego Armando de Oliveira Meneses, Instituto Federal de Sergipe.
+Developed by Gilson Teixeira do Sacramento Junior as an academic project at the Instituto Federal de Sergipe.
