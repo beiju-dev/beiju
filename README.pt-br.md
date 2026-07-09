@@ -32,7 +32,7 @@ O Beiju fecha essa lacuna com uma **Semantic Layer**: em vez de escrever `SELECT
 ## Instalação
  
 ```bash
-npm install beiju
+npm install @beiju-dev/beiju
 ```
  
 > Requer Node.js 20+ e PostgreSQL.
@@ -42,7 +42,7 @@ npm install beiju
 ## Começando
  
 ```typescript
-import { AnalyticsContext, classificar, ou, e } from 'beiju'
+import { AnalyticsContext, classificar, ou, e } from '@beiju-dev/beiju'
  
 const ctx = new AnalyticsContext('postgresql://usuario:senha@localhost:5432/meubanco')
 const vendas = await ctx.table('vendas')
@@ -64,7 +64,7 @@ const resultado = await vendas
 ### Comparação com mês anterior (LAG)
  
 ```typescript
-import { anterior } from 'beiju'
+import { anterior } from '@beiju-dev/beiju'
  
 const resultado = await vendas
   .selecione([
