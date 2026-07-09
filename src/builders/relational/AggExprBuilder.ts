@@ -26,7 +26,6 @@ export class AggExprBuilder {
     return this;
   }
 
-  // ─── Alias em português —
   como(alias: string): this {
     return this.as(alias);
   }

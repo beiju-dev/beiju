@@ -6,7 +6,6 @@ import { AggregateExpr } from './AggregateExpr.js'
 
 export type WindowFnColumn = ColumnRef | AggregateExpr  
 
-
 export class WindowFunctionExpr<T extends SqlType = SqlType> {
   readonly kind = 'WindowFunctionExpr' as const
 

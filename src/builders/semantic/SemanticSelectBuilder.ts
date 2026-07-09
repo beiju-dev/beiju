@@ -112,12 +112,10 @@ export class SemanticSelectBuilder implements ISemanticSelectBuilder {
     return this.offset(n);
   }
 
-  // ─── Alias em português — JOINs ─────────────────────────────────────────
   juncaoInterna(table: Table): JoinBuilder<this> {
     return this.innerJoin(table);
   }
   
-  //equivalente ao join sozinho sem prefixo inner
   junte(table: Table): JoinBuilder<this> {
     return this.innerJoin(table);
   }

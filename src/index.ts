@@ -46,13 +46,11 @@ export type { IQueryExecutor } from './core/interfaces/IQueryExecutor.js'
 export type { IQueryResult }   from './core/interfaces/IQueryExecutor.js'
 export type { IRawQueryCheck } from './core/interfaces/IRawQueryCheck.js'
 
-// ─── Aliases em português — Window Functions ──────────────────────────────
 export const classificar = rank
 export const classificarDenso = denseRank
 export const numeroDaLinha = rowNumber
 export const anterior = lag
 export const proximo = lead
-//export const grupo = ntile
 export const media = avg
 export const ou = or
 export const e = and

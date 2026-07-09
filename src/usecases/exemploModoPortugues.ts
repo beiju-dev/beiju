@@ -153,8 +153,6 @@ async function main() {
 
   console.table(exemplo7)
 
-  // ══════════════════════════════════════════════════════════════════════
-
   await (ctx as any).adapter.close()
   console.log('\n' + linha('─'))
   console.log('  Conexão encerrada.')

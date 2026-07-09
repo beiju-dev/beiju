@@ -87,7 +87,6 @@ export class SqlGenerator {
     return aggregate.alias ? `${withWindow} AS ${aggregate.alias}` : withWindow
   }
 
-  //compila agregação e apenas coluna (entende os tipos e desmembra o aninhamento com recursividade)
   private static compileAggColumn(column: ColumnRef | AggregateExpr): string {
   if (column.kind === 'AggregateExpr') {
     const inner = SqlGenerator.compileAggColumn(column.column)

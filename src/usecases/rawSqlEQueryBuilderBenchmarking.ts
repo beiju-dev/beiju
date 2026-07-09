@@ -29,7 +29,6 @@ const avgOver = (col: string) =>
 
 const CONNECTION_STRING = process.env.DB_STRING_CONNECTION
 
-// ─── Tipos de resultado ───────────────────────────────────────────────────────
 
 interface RankingVendas {
   vendedor_id: number
@@ -59,9 +58,6 @@ interface RankingComJoin {
   ranking_regional: number
   regiao: string
 }
-
-// ─── Repositório Raw SQL ──────────────────────────────────────────────────────
-// Abordagem tradicional: strings SQL nativas, sem type-safety de colunas
 
 class VendasRawRepository {
   constructor(readonly executor: IQueryExecutor) {}

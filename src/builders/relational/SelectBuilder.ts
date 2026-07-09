@@ -34,11 +34,10 @@ export class SelectBuilder implements ISelectBuilder {
   select(fn: SelectFn): this {
     const items = fn(new ColumnContext())
 
-    // Resolve builders para seus tipos concretos de domínio
     this.selections = items.map(item => {
       if (item instanceof AggExprBuilder)    return item.build()
       if (item instanceof WindowFnExprBuilder) return item.build()
-      return item // ColumnRef direto
+      return item 
     })
 
     return this
@@ -81,7 +80,6 @@ export class SelectBuilder implements ISelectBuilder {
     return this
   }
 
-   // ─── Alias em português  ─────────────────────────────────────
     selecione(items: SelectFn): this {
     return this.select(items)
     }

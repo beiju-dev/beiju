@@ -10,7 +10,6 @@ const mockExecutor: IQueryExecutor = {
   close:      vi.fn(),
 }
 
-// Exemplo de classe usando o @RawSql
 class UserRepository implements IRawQueryCheck{
   constructor(readonly executor: IQueryExecutor) {}
 

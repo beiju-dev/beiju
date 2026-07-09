@@ -11,13 +11,6 @@ interface InformationSchemaRow {
   is_nullable: 'YES' | 'NO'
 }
 
-/**
- * Adapter para PostgreSQL.
- * Implementa IDataSourceAdapter — executa queries e introspecta schemas.
- *
- * Usa Singleton para o Pool de conexões:
- * um Pool por string de conexão, reutilizado em toda a aplicação.
- */
 export class PgAdapter implements IDataSourceAdapter {
   private static instances: Map<string, PgAdapter> = new Map()
 
@@ -37,12 +30,6 @@ export class PgAdapter implements IDataSourceAdapter {
     return PgAdapter.instances.get(connectionString)!
   }
 
-  /**
-   * Executa uma query SQL parametrizada e retorna os resultados tipados.
-   *
-   * @param sql    — string SQL com placeholders ($1, $2, ...)
-   * @param params — valores correspondentes aos placeholders
-   */
   async execute<T extends QueryResultRow>(sql: string, params: unknown[]): Promise<IQueryResult<T>> {
     const client = await this.pool.connect()
 
@@ -73,14 +60,6 @@ export class PgAdapter implements IDataSourceAdapter {
   }
 }
 
-  /**
-   * Introspecta o schema de uma tabela consultando o information_schema.
-   * Retorna as colunas com nome, tipo mapeado e nullable.
-   *
-   * Lança erro se a tabela não existir ou não tiver colunas visíveis.
-   *
-   * @param tableName — nome da tabela no PostgreSQL
-   */
   async introspect(tableName: string): Promise<TableSchema> {
     const sql = `
       SELECT

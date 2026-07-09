@@ -1,4 +1,3 @@
-// domain/model/AggregateExpr.ts
 import { ColumnRef } from '../../ColumnRef.js'
 import { SqlType } from '../../types/SqlType.js' 
 import { WindowSpec } from '../WindowSpec.js' 

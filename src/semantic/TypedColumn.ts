@@ -4,14 +4,6 @@ import { AggExprBuilder } from '@builders/relational/AggExprBuilder.js'
 import { WindowFnExprBuilder } from '@builders/relational/WindowFnExprBuilder.js'
 import { WhereCondition } from '../core/ast/clause/WhereCondition.js' 
 
-/**
- * Representa uma coluna como cidadão de primeira classe na DSL.
- * Encapsula o ColumnRef e expõe métodos de agregação e condição
- * diretamente na coluna — sem precisar de strings.
- *
- * Em vez de: c.col('seller_name', 'o')
- * Você usa:  orders.seller_name
- */
 
 export class TypedColumn<T extends SqlType = SqlType> {
   readonly ref: ColumnRef<T>;
@@ -69,7 +61,6 @@ export class TypedColumn<T extends SqlType = SqlType> {
     return new WhereCondition(this.ref, "IN", values);
   }
 
-  // ─── Alias em português — Agregações ────────────────────────────────────
   soma(): AggExprBuilder {
     return this.sum();
   }
@@ -86,7 +77,6 @@ export class TypedColumn<T extends SqlType = SqlType> {
     return this.max();
   }
 
-  // --- Condições WHERE ───────────────────────────────
   igual(value: unknown): WhereCondition {
     return this.eq(value);
   }

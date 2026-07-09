@@ -1,7 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { PgAdapter } from '../../../../infrastructure/adapters/PgAdapter.js'
 
-// 1. Criamos referências compartilhadas no escopo do arquivo para controlar os comportamentos
 const mockQuery = vi.fn()
 const mockRelease = vi.fn()
 const mockConnect = vi.fn().mockResolvedValue({
@@ -15,7 +14,6 @@ const mockPool = {
   on:      vi.fn(),
 }
 
-// 2. O mock global apenas retorna a nossa estrutura fixa
 vi.mock('pg', () => {
   return {
     Pool: vi.fn(() => mockPool)
@@ -26,12 +24,9 @@ describe('PgAdapter', () => {
   let adapter: PgAdapter
 
   beforeEach(() => {
-    // Reseta o Map de instâncias entre testes
-    // @ts-expect-error — acesso à propriedade privada estática para reset de teste
-    PgAdapter.instances = new Map()
+    //PgAdapter.instances = new Map()
     adapter = PgAdapter.getInstance('postgresql://localhost:5432/test')
 
-    // Limpa o histórico de chamadas dos mocks antes de cada teste
     vi.clearAllMocks()
   })
 
@@ -48,7 +43,6 @@ describe('PgAdapter', () => {
   })
 
   it('executa query e retorna rows e rowCount', async () => {
-    // Apenas mudamos o comportamento do mock que já está injetado
     mockQuery.mockResolvedValueOnce({ rows: [{ id: 1 }], rowCount: 1 })
 
     const result = await adapter.execute('SELECT id FROM orders WHERE id = $1', [1])

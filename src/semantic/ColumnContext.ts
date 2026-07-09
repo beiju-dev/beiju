@@ -47,5 +47,4 @@ export class ColumnContext {
   }
 }
 
-// Tipo utilitário — aceita ColumnRef, AggExprBuilder ou WindowFnExprBuilder
 export type BuildableSelectionItem = ColumnRef | AggExprBuilder | WindowFnExprBuilder

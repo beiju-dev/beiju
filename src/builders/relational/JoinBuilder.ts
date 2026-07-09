@@ -2,17 +2,6 @@ import { JoinCondition, JoinSpec, JoinType } from '../../core/ast/JoinSpec.js'
 import type { TypedColumn }    from '../../semantic/TypedColumn.js'
 import type { Table }          from '../../semantic/Table.js'
 
-/**
- * Builder intermediário para cláusulas JOIN.
- * Criado por SemanticSelectBuilder.innerJoin() / leftJoin() / rightJoin().
- *
- * O callback onComplete devolve o controle ao SemanticSelectBuilder
- * assim que .on() é chamado — permitindo o encadeamento continuar.
- *
- * Exemplo:
- *   .innerJoin(tableUsuarios).on(vendas.usuario_id, tableUsuarios.id)
- *   .leftJoin(tableProdutos).on(vendas.produto_id, tableProdutos.id)
- */
 export class JoinBuilder<TBuilder> {
   private conditions: JoinCondition[] = [];
   private aliasValue?: string;
@@ -40,8 +29,6 @@ export class JoinBuilder<TBuilder> {
       ),
     );
   }
-
-  // ─── Alias em português ──────────────────────────────────────────────────
 
   como(alias: string): this {
     return this.as(alias);
