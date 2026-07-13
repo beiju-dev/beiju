@@ -26,7 +26,7 @@ First of all, thank you for your interest in contributing! Beiju is an open-sour
  
 ```bash
 # Clone the repository
-git clone https://github.com/junior-zip/beiju.git
+git clone https://github.com/beiju-dev/beiju.git
 cd beiju
  
 # Install dependencies
