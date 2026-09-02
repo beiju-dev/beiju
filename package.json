@@ -19,7 +19,7 @@
     "url": "git+https://github.com/beiju-dev/beiju.git"
   },
   "license": "MIT",
-  "author": "Gilson Teixeira do Sacramento Junior",
+  "author": "Gilson Teixeira do Sacramento Junior (junior-zip)",
   "engines": {
     "node": "^20.0.0 || ^22.0.0 || >=24.0.0"
   },
