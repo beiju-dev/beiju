@@ -4,7 +4,7 @@ import { or, and } from '@core/ast/clause/WhereClause.js'
 import 'dotenv/config'
 const CONNECTION_STRING = process.env.DB_STRING_CONNECTION;
 
-describe('Helpers or() e and() — integração com PostgreSQL real', () => {
+describe.skipIf(!CONNECTION_STRING)('Helpers or() e and() — integração com PostgreSQL real', () => {
   let ctx: AnalyticsContext
   let vendas: Awaited<ReturnType<AnalyticsContext['table']>>
 

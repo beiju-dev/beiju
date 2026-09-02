@@ -143,6 +143,12 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) · [CONTRIBUINDO.md](./CONTRIBUINDO.md)
 If you're using Beiju in a real project or experimenting with it for study purposes, we'd love to hear about it.
  
 ---
+
+## Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md) for a history of notable changes.
+
+---
  
 ## License
  

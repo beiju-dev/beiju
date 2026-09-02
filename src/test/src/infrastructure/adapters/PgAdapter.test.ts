@@ -16,7 +16,9 @@ const mockPool = {
 
 vi.mock('pg', () => {
   return {
-    Pool: vi.fn(() => mockPool)
+    Pool: vi.fn(function () {
+      return mockPool
+    })
   }
 })
 

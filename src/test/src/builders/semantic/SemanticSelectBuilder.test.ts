@@ -1,6 +1,7 @@
 import { beforeEach, describe, it, expect, vi } from 'vitest'
 import type { IDataSourceAdapter } from '@core/interfaces/IDataSourceAdapter.js'
 import { createTable } from '../../../../semantic/Table.js'
+import { SemanticSelectBuilder } from '../../../../builders/semantic/SemanticSelectBuilder.js'
 
 const mockAdapter: IDataSourceAdapter = {
   execute:    vi.fn().mockResolvedValue({ rows: [], rowCount: 0 }),
@@ -19,7 +20,9 @@ const mockSchema = {
   ],
 }
 
-const table = createTable('orders', mockSchema, mockAdapter)
+const table = createTable('orders', mockSchema, mockAdapter, (t, items) =>
+  new SemanticSelectBuilder(t, items, t.adapter)
+)
 
 describe('SemanticSelectBuilder', () => {
 
