@@ -1,25 +1,52 @@
 {
-  "name": "beiju",
+  "name": "@beiju-dev/beiju",
   "version": "0.1.0",
+  "description": "An analytical query builder for Node.js, with a Semantic Layer and bilingual API (English / Portuguese).",
+  "keywords": [
+    "sql",
+    "query-builder",
+    "postgresql",
+    "olap",
+    "analytics",
+    "semantic-layer",
+    "window-functions",
+    "typescript"
+  ],
+  "homepage": "https://github.com/beiju-dev/beiju#readme",
+  "bugs": "https://github.com/beiju-dev/beiju/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beiju-dev/beiju.git"
+  },
+  "license": "MIT",
+  "author": "Gilson Teixeira do Sacramento Junior",
   "engines": {
     "node": "^20.0.0 || ^22.0.0 || >=24.0.0"
   },
-  "...": "...",
-  "private": true,
   "type": "module",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
     }
   },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "test": "vitest run"
+    "build": "tsup",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run typecheck && npm run test && npm run build"
   },
   "devDependencies": {
     "@types/pg": "^8.20.0",
+    "tsup": "^8.5.1",
     "typescript": "^5.6.3",
     "vite-tsconfig-paths": "^6.1.1",
     "vitest": "^4.1.9"

@@ -4,7 +4,7 @@ import 'dotenv/config'
 
 const CONNECTION_STRING = process.env.DB_STRING_CONNECTION
 
-describe('SemanticSelecBuilder — integração com PostgreSQL e ordenação atendida também via AggregateExpr', () => {
+describe.skipIf(!CONNECTION_STRING)('SemanticSelecBuilder — integração com PostgreSQL e ordenação atendida também via AggregateExpr', () => {
   let ctx: AnalyticsContext 
   let vendas: Awaited<ReturnType<AnalyticsContext['table']>>
 

@@ -4,7 +4,7 @@ import 'dotenv/config'
 
 const CONNECTION_STRING = process.env.DB_STRING_CONNECTION
 
-describe('WHERE operators — integração com PostgreSQL real', () => {
+describe.skipIf(!CONNECTION_STRING)('WHERE operators — integração com PostgreSQL real', () => {
   let ctx: AnalyticsContext
   let vendas: Awaited<ReturnType<AnalyticsContext['table']>>
 

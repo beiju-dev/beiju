@@ -180,6 +180,12 @@ O Beiju é open source e contribuições são bem-vindas, seja um relato de bug,
 Se você está usando o Beiju em um projeto real ou experimentando a biblioteca para fins de estudo, adoraríamos saber.
  
 ---
+
+## Changelog
+
+Veja [CHANGELOG.md](./CHANGELOG.md) para o histórico de mudanças notáveis.
+
+---
  
 ## Licença
  
