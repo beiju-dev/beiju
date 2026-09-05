@@ -1,11 +1,11 @@
 # File Tree: beiju.js
 
-**Generated:** 03/07/2026, 21:17:32
-**Root Path:** `<repo/private>`
+**Generated:** 05/09/2026, 12:16:40
 
 ```
 ├── .github
 │   ├── workflows
+│   │   └── ci.yml
 │   └── pull_request_template.md
 ├── src
 │   ├── builders
@@ -57,7 +57,6 @@
 │   │   └── ColumnRef.ts
 │   ├── infrastructure
 │   │   ├── adapters
-│   │   │   ├── CsvAdapter.ts
 │   │   │   └── PgAdapter.ts
 │   │   └── PgTypeMap.ts
 │   ├── semantic
@@ -98,12 +97,16 @@
 ├── # File Tree: beiju.md
 ├── .gitignore
 ├── .npmrc
-├── Liscence.md
+├── CHANGELOG.md
+├── CONTRIBUINDO.md
+├── CONTRIBUTING.md
+├── LICENSE.md
 ├── README.md
 ├── README.pt-br.md
 ├── package-lock.json
 ├── package.json
 ├── tsconfig.json
+├── tsup.config.ts
 └── vitest.config.ts
 ```
 
