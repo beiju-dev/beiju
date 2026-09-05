@@ -1,6 +1,6 @@
 # Contribuindo com o Beiju
  
-Antes de tudo, obrigado pelo interesse em contribuir! O Beiju é um query builder analítico open source para Node.js, e toda contribuição — por menor que seja — ajuda o projeto a ir mais longe.
+Antes de tudo, obrigado pelo interesse em contribuir! O Beiju é um query builder analítico open source para Node.js, e toda contribuição, por menor que seja, ajuda o projeto a ir mais longe.
  
 ---
  
@@ -52,7 +52,7 @@ beiju/
 └── docs/               # Documentação adicional
 ```
  
-O projeto segue uma **arquitetura hexagonal** com princípios de Domain-Driven Design. Se você não conhece esses conceitos, fique à vontade para abrir uma discussão — estamos felizes em ajudar.
+O projeto segue uma **arquitetura hexagonal** com princípios de Domain-Driven Design. Se você não conhece esses conceitos, fique à vontade para abrir uma discussão, estamos felizes em ajudar.
  
 ---
  

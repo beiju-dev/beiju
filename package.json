@@ -1,5 +1,5 @@
 {
-  "name": "@beiju-dev/beiju",
+  "name": "beiju",
   "version": "0.1.0",
   "description": "An analytical query builder for Node.js, with a Semantic Layer and bilingual API (English / Portuguese).",
   "keywords": [
@@ -19,7 +19,7 @@
     "url": "git+https://github.com/beiju-dev/beiju.git"
   },
   "license": "MIT",
-  "author": "Gilson Teixeira do Sacramento Junior (junior-zip)",
+  "author": "Junior Teixeira (junior-zip)",
   "engines": {
     "node": "^20.0.0 || ^22.0.0 || >=24.0.0"
   },

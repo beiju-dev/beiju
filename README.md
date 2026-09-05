@@ -40,7 +40,7 @@ Beiju closes that gap with a **Semantic Layer**: instead of writing `SELECT`, `W
 ## Installation
  
 ```bash
-npm install @beiju-dev/beiju
+npm i beiju
 ```
  
 > Requires Node.js 20+ and PostgreSQL.
@@ -52,7 +52,7 @@ npm install @beiju-dev/beiju
 ### English API
  
 ```typescript
-import { AnalyticsContext, rank } from '@beiju-dev/beiju'
+import { AnalyticsContext, rank } from 'beiju'
  
 const ctx = new AnalyticsContext('postgresql://user:pass@localhost:5432/mydb')
 const vendas = await ctx.table('vendas')
@@ -76,7 +76,7 @@ const result = await vendas
 A mesma biblioteca, o mesmo motor, vocabulário localizado:
  
 ```typescript
-import { AnalyticsContext, classificar } from '@beiju-dev/beiju'
+import { AnalyticsContext, classificar } from 'beiju'
  
 const ctx = new AnalyticsContext('postgresql://user:pass@localhost:5432/mydb')
 const vendas = await ctx.table('vendas')
