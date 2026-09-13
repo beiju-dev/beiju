@@ -5,6 +5,11 @@ Todas as mudanças notáveis deste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+> As entradas abaixo desta linha foram escritas manualmente na preparação do publish inicial.
+> A partir daqui, novas versões são geradas automaticamente pelo
+> [release-please](https://github.com/googleapis/release-please) a partir dos commits
+> (formato Angular, em inglês) e não devem ser editadas manualmente.
+
 ## [Unreleased]
 
 ### Corrigido
