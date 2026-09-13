@@ -90,10 +90,12 @@ Certifique-se de que todos os testes passam antes de abrir um pull request.
  
 ## Convenção de Commits
  
-Este projeto usa [Conventional Commits](https://www.conventionalcommits.org/pt-br/):
+Este projeto usa [Conventional Commits](https://www.conventionalcommits.org/pt-br/). O `CHANGELOG.md` e a versão
+do pacote são gerados automaticamente a partir desses commits pelo [release-please](https://github.com/googleapis/release-please) —
+por isso, escreva a `<descrição curta>` em inglês, já que ela é usada tal como está no changelog gerado.
  
 ```
-<tipo>: <descrição curta>
+<tipo>: <descrição curta, em inglês>
  
 Tipos:
   feat      → nova funcionalidade
@@ -106,10 +108,10 @@ Tipos:
  
 Exemplos:
 ```
-feat: adicionar suporte a frame ROWS no WindowSpec
-fix: corrigir cálculo de frame bounds para modo RANGE
-docs: adicionar exemplo de uso para cláusula partition by
-test: adicionar teste de integração para soma cumulativa
+feat: add ROWS frame support to WindowSpec
+fix: correct frame bounds calculation for RANGE mode
+docs: add usage example for partition by clause
+test: add integration test for cumulative sum query
 ```
  
 ---
