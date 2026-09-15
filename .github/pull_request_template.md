@@ -1,33 +1,25 @@
-## Descrição do problema
+<!--
+You can write this PR in Portuguese or English — whichever is more comfortable for you.
+Você pode escrever este PR em português ou inglês — o que for mais confortável pra você.
+-->
 
-[Descreva de forma clara e objetiva qual foi o problema.]
+## Description / Descrição
 
-## Solução proposta
+<!-- What problem does this solve, and how? / Qual problema isso resolve, e como? -->
 
-[Descreva objetivamente a alteração realizada e como ela resolve a causa raiz.]
+## Related issue / Issue relacionada
 
-## Como testar
+<!-- Closes #... -->
 
-[Descreva aqui como podemos testar o seu PR.]
+## How to test / Como testar
 
-## Resultados
+<!-- Steps to test/reproduce locally. / Passos para testar/reproduzir localmente. -->
 
-[Aqui opcionalmente você pode escrever uma frase ou deixar um print com a solução.]
+## Checklist
 
-Geral:
-- [ ] Você revisou seu próprio código?
-- [ ] Lembrou de não deixar nenhuma linha de código comentado?
-- [ ] Build está passando?
-- [ ] Fez testes?
-
-Migrations e banco de dados:
-- [ ] Se tem View está criada como migração repeatable?
-- [ ] A unicidade está com unique key na tabela?
-- [ ] Colocou foreign key?
-- [ ] Colocou a primary key como BigSerial?
-
-Back:
-- [ ] Adicionou validações para os campos do Form?
-- [ ] Lembrou de adicionar o @Valid?
-- [ ] Está usando paginação?
-- [ ] Lembrou de criar o DTO?
+- [ ] I reviewed my own code / Revisei meu próprio código
+- [ ] No leftover commented-out code / Sem código comentado esquecido
+- [ ] Tests added/updated (`npm test`) / Testes adicionados ou atualizados
+- [ ] `npm run typecheck` and `npm run build` pass
+- [ ] Commits follow [Conventional Commits](../CONTRIBUTING.md#commit-convention), with the description written in English
+- [ ] Breaking changes are called out below, if any / Mudanças que quebram compatibilidade estão descritas abaixo, se houver

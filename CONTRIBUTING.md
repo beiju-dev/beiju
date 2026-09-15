@@ -90,7 +90,9 @@ Make sure all tests pass before opening a pull request.
  
 ## Commit Convention
  
-This project uses [Conventional Commits](https://www.conventionalcommits.org/):
+This project uses [Conventional Commits](https://www.conventionalcommits.org/). `CHANGELOG.md` and the package
+version are generated automatically from these commits by [release-please](https://github.com/googleapis/release-please) —
+write the `<short description>` in English, since it is used as-is in the generated changelog.
  
 ```
 <type>: <short description>
