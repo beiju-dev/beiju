@@ -9,6 +9,7 @@ export interface ISelectBuilder extends IBuilder<SelectQuery> {
   where(fn: WhereFn): this
   groupBy(...columns: string[]): this
   orderBy(column: string, direction?: 'ASC' | 'DESC'): this
+  distinct(): this
   limit(n: number): this
   offset(n: number): this
   fetch<T extends Record<string, any> = any>(): Promise<T[]>;

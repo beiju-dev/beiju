@@ -113,8 +113,17 @@ describe('SemanticSelectBuilder', () => {
       expect.stringContaining('ORDER BY orders.total_amount DESC'),
       []
     )
-  })
+  });
+  it('gera SELECT DISTINCT com coluna tipada', async () => {
+    await table
+      .select([table.seller_name])
+      .distinct()
+      .fetch()
 
+    expect(mockAdapter.execute).toHaveBeenCalledWith(
+      'SELECT DISTINCT orders.seller_name FROM orders',
+      []
+    )
+  });
   
-
 })

@@ -14,5 +14,6 @@ export class SelectQuery {
     readonly orderBy?: OrderByItem[],
     readonly limit?: number,
     readonly offset?: number,
+    readonly distinct?: boolean
   ) {}
 }
