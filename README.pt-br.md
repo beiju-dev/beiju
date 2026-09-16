@@ -1,5 +1,8 @@
 # Beiju
  
+**Beiju-site** | (demo) | **[beiju.dev](https://beiju-dev.github.io/beiju-site/)**
+
+
 **Um query builder analítico para Node.js, com Semantic Layer e API bilíngue (Português / Inglês).**
  
 O Beiju compila cadeias fluentes de métodos TypeScript em SQL seguro e parametrizado, abstraindo operações OLAP (Window Functions, agregações, JOINs, comparações temporais) que ORMs tradicionais como Prisma e TypeORM não possuem essa especialidade.
@@ -186,13 +189,18 @@ Se você está usando o Beiju em um projeto real ou experimentando a biblioteca 
 Veja [CHANGELOG.md](./CHANGELOG.md) para o histórico de mudanças notáveis.
 
 ---
- 
+## Comunidade
+
+Aproveite nosso **[Discord](https://discord.gg/7YcRw3eDr)**
+
+---
 ## Licença
  
 MIT. Veja [LICENSE.md](./LICENSE.md).
- 
+
 ---
+
  
 ## Agradecimentos
  
-Desenvolvido por Gilson Teixeira do Sacramento Junior, inicialmente como trabalho academico no Instituto Federal de Sergipe.
+Desenvolvido por Junior Teixeira (junior-zip), inicialmente como trabalho academico no Instituto Federal de Sergipe.

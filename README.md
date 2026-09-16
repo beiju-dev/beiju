@@ -3,10 +3,12 @@
   <img width="260" height="238" alt="image" src="https://github.com/user-attachments/assets/8c994bf2-2e6e-4e86-bfac-2458982b1f54" />
 </div>
  
+---
+ 
 **Beiju** | [Leia em Português 🇧🇷](./README.pt-br.md)
 
-**Beiju-site** | (demo) | **[beiju-dev.github.io/beiju-site](https://beiju-dev.github.io/beiju-site/)**
 
+**Beiju-site** | (demo) | **[beiju.dev](https://beiju-dev.github.io/beiju-site/)**
 
 **An analytical query builder for Node.js, with a Semantic Layer and bilingual API (English / Portuguese).**
  
@@ -149,13 +151,20 @@ If you're using Beiju in a real project or experimenting with it for study purpo
 See [CHANGELOG.md](./CHANGELOG.md) for a history of notable changes.
 
 ---
+## Community
+
+Join our Discord **[Discord](https://discord.gg/7YcRw3eDr)**
+
+ 
+---
  
 ## License
  
 MIT. See [LICENSE.md](./LICENSE.md).
- 
----
+
+ ---
+
  
 ## Acknowledgments
  
-Developed by Gilson Teixeira do Sacramento Junior as an academic project at the Instituto Federal de Sergipe.
+Developed by Junior Teixeira (junior-zip) as an academic project at the Instituto Federal de Sergipe.
