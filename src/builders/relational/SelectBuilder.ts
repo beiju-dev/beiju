@@ -23,6 +23,7 @@ export class SelectBuilder implements ISelectBuilder {
   private orderByItems: OrderByItem[] = []
   private limitValue?: number
   private offsetValue?: number
+  private distinctValue: boolean = false
   
   constructor(private readonly executor: IQueryExecutor) {}
 
@@ -80,6 +81,11 @@ export class SelectBuilder implements ISelectBuilder {
     return this
   }
 
+  distinct(): this {
+  this.distinctValue = true
+  return this
+  }
+
     selecione(items: SelectFn): this {
     return this.select(items)
     }
@@ -101,6 +107,7 @@ export class SelectBuilder implements ISelectBuilder {
       this.orderByItems.length > 0 ? this.orderByItems : undefined,
       this.limitValue,
       this.offsetValue,
+      this.distinctValue
     )
   }
 

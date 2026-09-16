@@ -33,6 +33,7 @@ export class SemanticSelectBuilder implements ISemanticSelectBuilder {
   private orderByItems: OrderByItem[] = [];
   private limitValue?: number;
   private offsetValue?: number;
+  private distinctValue: boolean = false;
   private joinSpecs: JoinSpec[] = [];
 
   constructor(
@@ -60,6 +61,11 @@ export class SemanticSelectBuilder implements ISemanticSelectBuilder {
   limit(n: number): this {
     this.limitValue = n;
     return this;
+  }
+
+  distinct(): this {
+  this.distinctValue = true
+  return this
   }
 
   offset(n: number): this {
@@ -168,6 +174,7 @@ export class SemanticSelectBuilder implements ISemanticSelectBuilder {
       this.orderByItems.length > 0 ? this.orderByItems : undefined,
       this.limitValue,
       this.offsetValue,
+      this.distinctValue
     );
   }
 

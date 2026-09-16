@@ -19,6 +19,7 @@ export interface ISemanticSelectBuilder {
   agrupePor(...columns: unknown[]): this
   ordenePor(column: unknown, direction?: 'ASC' | 'DESC'): this
   limite(n: number): this
+  distinct(): this;
   offset(n: number): this
   juncaoInterna(table: Table): JoinBuilder<this>
   junte(table: Table): JoinBuilder<this>

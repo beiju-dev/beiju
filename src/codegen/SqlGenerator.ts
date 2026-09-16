@@ -23,7 +23,12 @@ export class SqlGenerator {
       ? `${query.from.table} AS ${query.from.alias}`
       : query.from.table;
 
-    const clauses: string[] = [`SELECT ${selectSql}`, `FROM ${fromSql}`];
+    const selectKeyword = query.distinct ? "SELECT DISTINCT" : "SELECT";
+
+    const clauses: string[] = [
+        `${selectKeyword} ${selectSql}`,
+        `FROM ${fromSql}`,
+      ];
 
     if (query.joins?.length) {
       query.joins.forEach((join) => {

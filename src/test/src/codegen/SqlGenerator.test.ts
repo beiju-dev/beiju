@@ -139,4 +139,18 @@ describe('SqlGenerator', () => {
     const sql = (SqlGenerator as any).compileAggregate(nested);
     expect(sql).toBe("AVG(SUM(vendas.total))");
   });
+  it('gera SELECT DISTINCT quando solicitado', () => {
+    const query = {
+      from: { table: 'orders' },
+      select: [new ColumnRef('seller_name', 'string')],
+      distinct: true,
+    };
+
+    const compiled = SqlGenerator.compile(query);
+
+    expect(compiled).toEqual({
+      sql: 'SELECT DISTINCT seller_name FROM orders',
+      params: [],
+    });
+  });
 })
