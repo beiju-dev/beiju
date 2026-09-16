@@ -10,6 +10,14 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 > [release-please](https://github.com/googleapis/release-please) a partir dos commits
 > (formato Angular, em inglês) e não devem ser editadas manualmente.
 
+## [0.2.0](https://github.com/beiju-dev/beiju/compare/v0.1.0...v0.2.0) (2026-09-16)
+
+
+### Features
+
+* add DISTINCT support to select builders ([6316001](https://github.com/beiju-dev/beiju/commit/63160015d27ca438c17d762e9e692ba13371efbb))
+* add DISTINCT support to select builders ([3580a27](https://github.com/beiju-dev/beiju/commit/3580a27b0069faffe6f20a3e16d1a7706579ac6a))
+
 ## [Unreleased]
 
 ### Corrigido

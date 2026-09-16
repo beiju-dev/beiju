@@ -1,6 +1,6 @@
 {
   "name": "beiju",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "An analytical query builder for Node.js, with a Semantic Layer and bilingual API (English / Portuguese).",
   "keywords": [
     "sql",
